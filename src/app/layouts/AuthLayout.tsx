@@ -1,11 +1,27 @@
-import type { PropsWithChildren } from "react";
+import { Outlet } from "react-router";
+import ThemeTogglerTwo from "../theme/ThemeTogglerTwo";
 
-export default function AuthLayout({ children }: PropsWithChildren) {
+export default function AuthLayout() {
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="w-96 bg-cyan-100 p-4 rounded-xl text-center">
-        Auth layout
-        {children}
+    <div className="relative p-6 bg-white z-1 dark:bg-gray-900 sm:p-0">
+      <div className="relative flex flex-col justify-center w-full h-screen lg:flex-row dark:bg-gray-900 sm:p-0">
+        <Outlet />
+        <div className="items-center hidden w-full h-full lg:w-1/2 bg-brand-950 dark:bg-white/5 lg:grid">
+          <div className="relative flex items-center justify-center z-1">
+            <div className="flex flex-col items-center max-w-xs">
+              <h1 className="text-whites">GG-car</h1>
+              <p className="text-center text-gray-400 dark:text-white/60">
+                GG-car is a modern online platform for buying, selling, and
+                renting cars. Our mission is to make the process of choosing and
+                purchasing a vehicle as simple, convenient, and transparent as
+                possible for every user.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="fixed z-50 hidden bottom-6 right-6 sm:block">
+          <ThemeTogglerTwo />
+        </div>
       </div>
     </div>
   );
