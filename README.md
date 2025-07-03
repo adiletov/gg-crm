@@ -16,6 +16,7 @@ GG-Car CRM — это фронтенд-интерфейс для системы 
 - **React Router 7**
 - **Redux Toolkit**
 - **React Redux**
+- **React hook form**
 - **Axios**
 - **TailwindCSS**
 - **Vite**
