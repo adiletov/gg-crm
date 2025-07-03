@@ -5,12 +5,14 @@ import { StoreProvider } from "./app/store";
 import { RouterProvider } from "react-router";
 import { router } from "./app/router/index.tsx";
 import { ThemeProvider } from "./app/theme/ThemeContext.tsx";
+import { ToastContainer } from "react-toastify";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <StoreProvider>
       <ThemeProvider>
         <RouterProvider router={router} />
+        <ToastContainer />
       </ThemeProvider>
     </StoreProvider>
   </StrictMode>

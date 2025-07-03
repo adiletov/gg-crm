@@ -774,3 +774,18 @@ span.flatpickr-weekday,
 .simplebar-scrollbar.simplebar-visible:before {
   @apply opacity-100;
 }
+
+.in-dev {
+  position: relative;
+}
+
+.in-dev::before {
+  content: 'in-dev';
+  background-color: orange;
+  position: absolute;
+  top: -10px;
+  color: white;
+  padding: 0 6px;
+  border-radius: 8px;
+  right: -10px;
+}

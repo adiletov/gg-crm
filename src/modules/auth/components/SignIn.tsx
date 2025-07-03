@@ -1,15 +1,33 @@
 import { Link } from "react-router";
-import Button from "../../../shared/components/ui/button/Button";
-import Label from "../../../shared/components/form/Label";
-import Input from "../../../shared/components/form/input/InputField";
-import Checkbox from "../../../shared/components/form/input/Checkbox";
-import { useState } from "react";
 import WithSociety from "./WithSociety";
-import PasswordInput from "./PasswordInput";
-import Heading from "./Heading";
+import PasswordInput from "./UI/PasswordInput";
+import Heading from "./UI/Heading";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import { emailValidate } from "@/shared/validators/form";
+import { useLoginMutation } from "../store/authApi";
+import Label from "@/shared/components/form/Label";
+import Input from "@/shared/components/form/input/InputField";
+import Button from "@/shared/components/ui/button/Button";
+
+interface IState {
+  email: string;
+  password: string;
+}
 
 export default function SignIn() {
-  const [isChecked, setIsChecked] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IState>();
+  const [loginMutation, { isLoading, isError }] = useLoginMutation();
+
+  const submitHandler: SubmitHandler<IState> = async (data) => {
+    try {
+      await loginMutation(data).unwrap();
+    } catch {}
+  };
+
   return (
     <div className="flex flex-col flex-1">
       <div className="flex flex-col justify-center flex-1 w-full max-w-md mx-auto">
@@ -18,28 +36,49 @@ export default function SignIn() {
           description="Enter your email and password to sign in!"
         />
         <WithSociety />
-        <form>
+        {isError && (
+          <p className="text-red-500 text-center bg-red-50 p-2 rounded-lg border-1 border-red-500 mb-1">
+            Invalid email or password!
+          </p>
+        )}
+        <form onSubmit={handleSubmit(submitHandler)}>
           <div className="space-y-6">
             <Label>
-              Email <span className="text-error-500">*</span>{" "}
+              Email <span className="text-error-500">*</span>
             </Label>
-            <Input placeholder="info@gmail.com" />
-            <PasswordInput />
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <Checkbox checked={isChecked} onChange={setIsChecked} />
-                <span className="block font-normal text-gray-700 text-theme-sm dark:text-gray-400">
-                  Keep me logged in
-                </span>
-              </div>
+            <Input
+              placeholder="info@gmail.com"
+              required
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: emailValidate,
+                  message: "Please enter a valid email",
+                },
+              })}
+              error={!!errors.email}
+              hint={errors.email?.message}
+            />
+            <PasswordInput
+              hint={errors.password?.message}
+              error={!!errors.password}
+              {...register("password", {
+                required: "You must specify a password",
+                minLength: {
+                  value: 8,
+                  message: "Password must have at least 8 characters",
+                },
+              })}
+            />
+            <div className="flex items-center justify-end">
               <Link
                 to="/reset-password"
-                className="text-sm text-brand-500 hover:text-brand-600 dark:text-brand-400"
+                className="text-sm text-brand-500 hover:text-brand-600 dark:text-brand-400 in-dev"
               >
                 Forgot password?
               </Link>
             </div>
-            <Button className="w-full" size="sm">
+            <Button className="w-full" size="sm" disabled={isLoading}>
               Sign in
             </Button>
           </div>
