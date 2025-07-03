@@ -1,10 +1,10 @@
-import { createBrowserRouter, Navigate } from "react-router";
+import { createBrowserRouter } from "react-router";
 
 import AuthLayout from "@/app/layouts/AuthLayout";
-import BaseLayout from "@/app/layouts/BaseLayout";
 import { SignIn, SignUp } from "@/modules/auth";
-
-const isAuth = true;
+import BaseLayout from "../layouts/BaseLayout";
+import ProfilePage from "@/pages/private/ProfilePage";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -22,8 +22,18 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/",
-    element: isAuth ? <BaseLayout /> : <Navigate to={"/auth"} />,
-    children: [],
+    element: <PrivateRoute />,
+    children: [
+      {
+        path: "/",
+        element: <BaseLayout />,
+        children: [
+          {
+            path: "profile",
+            element: <ProfilePage />,
+          },
+        ],
+      },
+    ],
   },
 ]);

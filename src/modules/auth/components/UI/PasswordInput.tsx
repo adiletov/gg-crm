@@ -1,9 +1,12 @@
 import Input from "@/shared/components/form/input/InputField";
 import Label from "@/shared/components/form/Label";
 import { EyeCloseIcon, EyeIcon } from "@/shared/icons";
-import { useState } from "react";
+import type { InputProps } from "@/shared/types/form.types";
+import { useState, type InputHTMLAttributes } from "react";
 
-export default function PasswordInput() {
+type Props = InputHTMLAttributes<HTMLInputElement> & InputProps
+
+export default function PasswordInput(props: Props) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -15,6 +18,7 @@ export default function PasswordInput() {
         <Input
           placeholder="Enter your password"
           type={showPassword ? "text" : "password"}
+          {...props}
         />
         <span
           onClick={() => setShowPassword(!showPassword)}
