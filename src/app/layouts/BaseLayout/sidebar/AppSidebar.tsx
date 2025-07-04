@@ -5,6 +5,7 @@ import {
   ChevronDownIcon,
   GridIcon,
   UserCircleIcon,
+  CarIcon
 } from "@/shared/icons";
 import { useSidebar } from "./SidebarContext";
 
@@ -25,6 +26,11 @@ const navItems: NavItem[] = [
     icon: <UserCircleIcon />,
     name: "User Profile",
     path: "/profile",
+  },
+   {
+    icon: <CarIcon />,
+    name: "Cars",
+    path: "/cars",
   },
 ];
 
