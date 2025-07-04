@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 @custom-variant dark (&:is(.dark *));
 
 @theme {
@@ -206,6 +205,9 @@
 
 @utility menu-item-icon-active {
   @apply text-brand-500 dark:text-brand-400;
+  svg {
+    @apply fill-current;
+  }
 }
 
 @utility menu-item-icon-size {
@@ -780,7 +782,7 @@ span.flatpickr-weekday,
 }
 
 .in-dev::before {
-  content: 'in-dev';
+  content: "in-dev";
   background-color: orange;
   position: absolute;
   top: -10px;

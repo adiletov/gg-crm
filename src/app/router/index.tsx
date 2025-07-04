@@ -5,6 +5,7 @@ import { SignIn, SignUp } from "@/modules/auth";
 import BaseLayout from "../layouts/BaseLayout";
 import ProfilePage from "@/pages/private/ProfilePage";
 import PrivateRoute from "./PrivateRoute";
+import CarsPage from "@/pages/private/CarsPage";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
           {
             path: "profile",
             element: <ProfilePage />,
+          },
+            {
+            path: "cars",
+            element: <CarsPage />,
           },
         ],
       },
