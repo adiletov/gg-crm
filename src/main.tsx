@@ -6,12 +6,15 @@ import { RouterProvider } from "react-router";
 import { router } from "./app/router/index.tsx";
 import { ThemeProvider } from "./app/theme/ThemeContext.tsx";
 import { ToastContainer } from "react-toastify";
+import { ModalProvider } from "./shared/providers/ModalProvider.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <StoreProvider>
       <ThemeProvider>
-        <RouterProvider router={router} />
+        <ModalProvider>
+          <RouterProvider router={router} />
+        </ModalProvider>
         <ToastContainer />
       </ThemeProvider>
     </StoreProvider>
