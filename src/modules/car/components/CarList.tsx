@@ -2,7 +2,7 @@ import Table from "@/shared/components/ui/table";
 import { useGetCarsQuery } from "../store/carApi";
 import { PlusIcon } from "@/shared/icons";
 import Button from "@/shared/components/ui/button/Button";
-import { useFullModal } from "@/shared/providers/ModalProvider";
+import { useFullModal } from "@/shared/components/modals/ModalProvider";
 import CarForm from "./CarForm";
 import type { ICar } from "../types/car.types";
 

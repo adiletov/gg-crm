@@ -6,7 +6,7 @@ import { RouterProvider } from "react-router";
 import { router } from "./app/router/index.tsx";
 import { ThemeProvider } from "./app/theme/ThemeContext.tsx";
 import { ToastContainer } from "react-toastify";
-import { ModalProvider } from "./shared/providers/ModalProvider.tsx";
+import { ModalProvider } from "./shared/components/modals/ModalProvider.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

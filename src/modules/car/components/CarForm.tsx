@@ -1,6 +1,6 @@
 import Input from "@/shared/components/form/input/InputField";
 import Button from "@/shared/components/ui/button/Button";
-import { useFullModal } from "@/shared/providers/ModalProvider";
+import { useFullModal } from "@/shared/components/modals/ModalProvider";
 import type { FormEvent } from "react";
 
 export default function CarForm() {

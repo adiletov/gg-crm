@@ -5,7 +5,7 @@ import {
   useCallback,
   type ReactNode,
 } from "react";
-import FullModal from "../components/modals/FullModal";
+import FullModal from "./FullModal";
 
 interface ModalContent {
   header: ReactNode;
