@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import { type ButtonHTMLAttributes, type ReactNode } from "react";
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode; // Button text or content
   size?: "sm" | "md"; // Button size
   variant?: "primary" | "outline"; // Button variant
@@ -20,6 +20,7 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   className = "",
   disabled = false,
+  ...props
 }) => {
   // Size Classes
   const sizeClasses = {
@@ -37,6 +38,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
+      {...props}
       className={`inline-flex items-center justify-center gap-2 rounded-lg transition ${className} ${
         sizeClasses[size]
       } ${variantClasses[variant]} ${

@@ -6,7 +6,7 @@ interface Props<T> {
   head: Column<T>[];
   data?: T[];
   isLoading: boolean;
-  renderCell?: (key: Column<T>["key"], item: any) => React.ReactNode;
+  renderCell?: (key: Column<T>["key"], value: any, item: T) => React.ReactNode;
 }
 export default function Table<T extends { id?: number }>({
   head,
@@ -47,7 +47,7 @@ export default function Table<T extends { id?: number }>({
                       key={h.key as string}
                       className="px-6 py-4 text-gray-700 dark:text-gray-300"
                     >
-                      {renderCell?.(h.key, value) || (value as string)}
+                      {renderCell?.(h.key, value, item) || (value as string)}
                     </td>
                   );
                 })}
